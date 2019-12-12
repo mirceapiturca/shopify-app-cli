@@ -1,4 +1,40 @@
-# Development notes
+# Shopify App CLI Development Guide
+
+This document describes the architecture of the App CLI and some principles we adhered to when designing it. This is valuable context to have for anyone contributing to this projects development.
+
+## Principles
+
+### Speed
+The CLI should execute quickly, getting things done and returning to the prompt as soon as possible. In dealing with other languages and external services we may incur unavoidable latency but the core execution and boot of the CLI should remain instantaneous.
+
+### No dependencies
+Because ruby objects are loaded into memory, the less runtime dependencies we `require` the better. We only have two depedencies: [cli-kit][cli-kit] and [cli-ui][cli-ui]. They are vendored in the codebase to avoid using bundler or sourcing gems, which can add latency.
+
+### Don't delete stuff
+
+## How the CLI works
+
+### The install script
+
+### The shell hook
+
+### The Entrypoint
+
+This class is what our shell hook executes. It's in charge of taking [ARGV][argv] and translating it into a `Command`, along with any behaviour we need to do during every execution, like analytics.
+
+## The Command Registry
+
+Keeps track of the Commands that are available to run
+
+## Anatomy of a Command
+
+### The call method
+
+Every Command has a `call` method, which is the starting point for it's behaviour.
+
+### Separation of Concerns
+
+Commands should deal with UI, options and arguments, serializing them as necessary and calling Tasks to perform complex logic.
 
 ## ShopifyCli::Context
 
@@ -14,3 +50,13 @@
 - Accessing information about the current project (app/codebase):
     - You can read from the `.env` file with the `Project.env` method
     - Accessing the `AppType` via `Project.app_type`
+
+## Testing
+
+run_cmd
+capture_io
+fixtures
+webmock
+
+[cli-kit]:https://github.com/Shopify/cli-kit
+[cli-ui]:https://github.com/Shopify/cli-ui
