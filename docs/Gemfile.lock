@@ -244,6 +244,7 @@ PLATFORMS
 
 DEPENDENCIES
   github-pages
+  jekyll-readme-index
 
 BUNDLED WITH
    1.17.3

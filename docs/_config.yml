@@ -3,3 +3,5 @@ markdown: kramdown
 exclude: [
   'heroku/',
 ]
+plugins:
+  - jekyll-readme-index
