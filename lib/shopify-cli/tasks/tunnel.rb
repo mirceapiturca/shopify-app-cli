@@ -92,7 +92,7 @@ module ShopifyCli
       end
 
       def ngrok_command
-        "exec #{File.join(ShopifyCli::ROOT, 'ngrok')} http -log=stdout -log-level=debug #{PORT}"
+        "exec #{File.join(ShopifyCli::ROOT, 'ngrok')} http -log=stdout -log-level=debug #{PORT} --subdomain=animatable --region=eu"
       end
 
       class LogParser
